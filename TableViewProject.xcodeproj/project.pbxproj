@@ -401,6 +401,7 @@
 				7ED4CDA21E7C084F00E976CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7ED4CDA31E7C084F00E976CD /* Build configuration list for PBXNativeTarget "TableViewProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -409,6 +410,7 @@
 				7ED4CDA51E7C084F00E976CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

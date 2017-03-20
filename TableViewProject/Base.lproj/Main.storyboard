@@ -696,11 +696,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="478" height="246"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
-                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <tableViewGridLines key="gridStyleMask" vertical="YES" horizontal="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="116" minWidth="40" maxWidth="1000" id="epr-nm-DWx">
+                                                <tableColumn width="116" minWidth="64" maxWidth="1000" id="epr-nm-DWx">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -711,7 +711,6 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="cellID" id="mUJ-PQ-I2k">
                                                             <rect key="frame" x="1" y="1" width="116" height="17"/>
@@ -740,9 +739,11 @@
                                             <connections>
                                                 <outlet property="dataSource" destination="XfG-lQ-9wD" id="FGd-yI-jsd"/>
                                                 <outlet property="delegate" destination="XfG-lQ-9wD" id="Lko-ut-7Hh"/>
+                                                <outlet property="menu" destination="V2I-Eb-dPs" id="7tp-Ww-AhY"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="aSe-Ae-V2g">
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
@@ -770,8 +771,49 @@
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <menu id="V2I-Eb-dPs">
+                    <items>
+                        <menuItem title="Add Row ↑" id="7go-VT-SLg">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="addRowBefore:" target="XfG-lQ-9wD" id="PHR-cp-dd8"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Add Row ↓" id="9bj-NT-Aqn">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="addRowAfter:" target="XfG-lQ-9wD" id="OA1-5e-eFn"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Delete Row" id="oYE-vQ-syQ">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="deleteRow:" target="XfG-lQ-9wD" id="FeV-vt-Oie"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="sCd-0n-aKP"/>
+                        <menuItem title="Add Column ←" id="4O4-ii-B0B">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="addColumnBefore:" target="XfG-lQ-9wD" id="glD-Y5-Zak"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Add Column →" id="wpS-vc-aQO">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="addColumnAfter:" target="XfG-lQ-9wD" id="GwE-DJ-yFi"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Delete Column" id="uuJ-c9-5N5">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="deleteColumn:" target="XfG-lQ-9wD" id="hCD-1B-t7i"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
-            <point key="canvasLocation" x="71" y="755"/>
+            <point key="canvasLocation" x="75" y="755"/>
         </scene>
     </scenes>
 </document>
