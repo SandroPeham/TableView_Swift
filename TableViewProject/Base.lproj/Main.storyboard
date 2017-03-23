@@ -802,6 +802,12 @@
                                 <action selector="deleteRow:" target="XfG-lQ-9wD" id="FeV-vt-Oie"/>
                             </connections>
                         </menuItem>
+                        <menuItem title="Duplicate Row" id="PFj-Ze-KCm">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="duplicateRow:" target="XfG-lQ-9wD" id="96K-KC-Axg"/>
+                            </connections>
+                        </menuItem>
                         <menuItem isSeparatorItem="YES" id="sCd-0n-aKP"/>
                         <menuItem title="Add Column ←" id="4O4-ii-B0B">
                             <modifierMask key="keyEquivalentModifierMask"/>

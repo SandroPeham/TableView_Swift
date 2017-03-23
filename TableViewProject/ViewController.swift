@@ -222,6 +222,16 @@ class ViewController: NSViewController {
         tableView.removeRows(at: IndexSet(integer: row), withAnimation: .slideUp)
     }
     
+    @IBAction func duplicateRow(_ sender: NSMenuItem) {
+        let rows = tableView.selectedRowIndexes
+        let index: Int = (rows.last ?? -1) + 1
+        for row in rows.reversed() {
+            let elementRow = data[row]
+            add(elementRow: elementRow, atRow: index, localizedString: "Duplicate Row")
+            tableView.insertRows(at: IndexSet(integer: index), withAnimation: .slideDown)
+        }
+    }
+    
     @IBAction func addColumnBefore(_ sender: NSMenuItem) {
         let column = tableView.clickedColumn
         add(elementColumn: emptyColumn(), atColumn: column, localizedString: "Add Column")
@@ -242,6 +252,7 @@ class ViewController: NSViewController {
     @IBAction func find(_ sender: Any) {
         searchBarViewContainerHeight.constant = searchBarHeight
     }
+    
 }
 
 // MARK: - Table View Data Source
