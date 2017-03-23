@@ -11,8 +11,13 @@ import Cocoa
 class ViewController: NSViewController {
     
     let cellID = "cellID"
+    let searchBarHeight: CGFloat = 30.0
 
     @IBOutlet weak var tableView: NSTableView!
+    @IBOutlet weak var searchBarViewContainer: NSView!
+    @IBOutlet weak var searchBarViewContainerHeight: NSLayoutConstraint!
+    
+    var searchBarView: SearchBarView?
     
     var data: [[String]] = []
     
@@ -32,12 +37,28 @@ class ViewController: NSViewController {
         data = [["a","b","d"],["asf","sdf","safd"],["adsf","lj","hs"]]
         //setLargeData()
         updateTableColumns()
-        
+        addSearchBarView()
     }
 
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
+        }
+    }
+    
+    private func addSearchBarView() {
+        var objects: NSArray = NSArray()
+        if Bundle.main.loadNibNamed("SearchBarView", owner: self, topLevelObjects: &objects) {
+            for object in objects {
+                if let searchBarView = object as? SearchBarView {
+                    self.searchBarView = searchBarView
+                    searchBarView.frame.size = searchBarViewContainer.frame.size
+                    searchBarView.autoresizingMask = [.viewHeightSizable, .viewWidthSizable]
+                    searchBarView.delegate = self
+                    searchBarViewContainer.addSubview(searchBarView)
+                    searchBarViewContainerHeight.constant = 0
+                }
+            }
         }
     }
     
@@ -149,6 +170,31 @@ class ViewController: NSViewController {
         tableView.reloadData()
     }
     
+    private func emptyRow() -> [String] {
+        return Array<String>(repeating: "", count: numColumns)
+    }
+    
+    private func emptyColumn() -> [String] {
+        return Array<String>(repeating: "", count: numRows)
+    }
+    
+    func set(_ value: String, forRow row: Int, column: Int) {
+        let currentValue = data[row][column]
+        
+        if currentValue == value { return }
+        
+        undoManager?.registerUndo(withTarget: self, handler: { (target) in
+            target.set(currentValue, forRow: row, column: column)
+        })
+        undoManager?.setActionName(NSLocalizedString("Cell typing", comment: "Cell undo"))
+        
+        data[row][column] = value
+        
+        tableView.reloadData(forRowIndexes: IndexSet(integer: row), columnIndexes: IndexSet(integer: column))
+    }
+    
+    // MARK: - IBActions
+    
     @IBAction func endEditing(_ sender: NSTextField) {
         let row = tableView.row(for: sender)
         let column = tableView.column(for: sender)
@@ -156,14 +202,6 @@ class ViewController: NSViewController {
         if row < 0 || column < 0 { return }
         
         set(sender.stringValue, forRow: row, column: column)
-    }
-    
-    private func emptyRow() -> [String] {
-        return Array<String>(repeating: "", count: numColumns)
-    }
-    
-    private func emptyColumn() -> [String] {
-        return Array<String>(repeating: "", count: numRows)
     }
     
     @IBAction func addRowBefore(_ sender: NSMenuItem) {
@@ -201,21 +239,12 @@ class ViewController: NSViewController {
         tableView.reloadData()
     }
     
-    func set(_ value: String, forRow row: Int, column: Int) {
-        let currentValue = data[row][column]
-        
-        if currentValue == value { return }
-        
-        undoManager?.registerUndo(withTarget: self, handler: { (target) in
-            target.set(currentValue, forRow: row, column: column)
-        })
-        undoManager?.setActionName(NSLocalizedString("Cell typing", comment: "Cell undo"))
-        
-        data[row][column] = value
-        
-        tableView.reloadData(forRowIndexes: IndexSet(integer: row), columnIndexes: IndexSet(integer: column))
+    @IBAction func find(_ sender: Any) {
+        searchBarViewContainerHeight.constant = searchBarHeight
     }
 }
+
+// MARK: - Table View Data Source
 
 extension ViewController: NSTableViewDataSource {
     
@@ -244,6 +273,8 @@ extension ViewController: NSTableViewDataSource {
         return nil
     }
 }
+
+// MARK: - Table View Delegate
 
 extension ViewController: NSTableViewDelegate {
     
@@ -282,6 +313,53 @@ extension ViewController: NSTableViewDelegate {
             tableColumn.identifier = "\(index)"
             tableColumn.headerCell.stringValue = "\(index)"
             index += 1
+        }
+    }
+}
+
+// MARK: - Table View Delegate
+
+extension ViewController: SearchBarViewDelegate {
+    func removePreviousHighlight() {
+        if let previousResult = searchBarView?.previousResult() {
+            if let cell = tableView.view(atColumn: previousResult.column, row: previousResult.row, makeIfNecessary: false) as? NSTableCellView {
+                cell.textField?.attributedStringValue = NSAttributedString(string: (cell.textField?.stringValue)!)
+            }
+        }
+    }
+    func done() {
+        searchBarViewContainerHeight.constant = 0
+        removePreviousHighlight()
+    }
+    
+    func search(text: String) {
+        for row in 0..<numRows {
+            for column in 0..<numColumns {
+                if let cell = tableView.view(atColumn: column, row: row, makeIfNecessary: false) as? NSTableCellView {
+                    cell.textField?.attributedStringValue = NSAttributedString(string: (cell.textField?.stringValue)!)
+                }
+                if data[row][column].contains(text) {
+                    searchBarView?.addResult(result: SearchResult(row: row, column: column))
+                }
+            }
+        }
+    }
+    
+    func showNextResult() {
+        removePreviousHighlight()
+        if let result = searchBarView?.nextResult() {
+            let text = searchBarView!.searchField.stringValue
+            if let cell = tableView.view(atColumn: result.column, row: result.row, makeIfNecessary: false) as? NSTableCellView {
+                if let attributedString = cell.textField?.attributedStringValue {
+                    if let mutableAttributedString = attributedString.mutableCopy() as? NSMutableAttributedString {
+                        let range = NSString(string: attributedString.string).range(of: text)
+                        mutableAttributedString.addAttribute(NSBackgroundColorAttributeName, value: NSColor.yellow, range: range)
+                        cell.textField?.attributedStringValue = mutableAttributedString
+                        tableView.scrollRowToVisible(result.row)
+                        tableView.scrollColumnToVisible(result.column)
+                    }
+                }
+            }
         }
     }
 }

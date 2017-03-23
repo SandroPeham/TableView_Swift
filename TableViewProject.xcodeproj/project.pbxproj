@@ -12,6 +12,8 @@
 		7ED4CD8E1E7C084F00E976CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ED4CD8D1E7C084F00E976CD /* Assets.xcassets */; };
 		7ED4CD911E7C084F00E976CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ED4CD8F1E7C084F00E976CD /* Main.storyboard */; };
 		7ED4CD9C1E7C084F00E976CD /* TableViewProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED4CD9B1E7C084F00E976CD /* TableViewProjectTests.swift */; };
+		7EF4DB1F1E81C048008F4539 /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EF4DB1E1E81C048008F4539 /* SearchBarView.xib */; };
+		7EF4DB211E81C08F008F4539 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF4DB201E81C08F008F4539 /* SearchBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,8 @@
 		7ED4CD971E7C084F00E976CD /* TableViewProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TableViewProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ED4CD9B1E7C084F00E976CD /* TableViewProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewProjectTests.swift; sourceTree = "<group>"; };
 		7ED4CD9D1E7C084F00E976CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7EF4DB1E1E81C048008F4539 /* SearchBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchBarView.xib; sourceTree = "<group>"; };
+		7EF4DB201E81C08F008F4539 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,8 @@
 			children = (
 				7ED4CD891E7C084F00E976CD /* AppDelegate.swift */,
 				7ED4CD8B1E7C084F00E976CD /* ViewController.swift */,
+				7EF4DB1E1E81C048008F4539 /* SearchBarView.xib */,
+				7EF4DB201E81C08F008F4539 /* SearchBarView.swift */,
 				7ED4CD8D1E7C084F00E976CD /* Assets.xcassets */,
 				7ED4CD8F1E7C084F00E976CD /* Main.storyboard */,
 				7ED4CD921E7C084F00E976CD /* Info.plist */,
@@ -178,6 +184,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EF4DB1F1E81C048008F4539 /* SearchBarView.xib in Resources */,
 				7ED4CD8E1E7C084F00E976CD /* Assets.xcassets in Resources */,
 				7ED4CD911E7C084F00E976CD /* Main.storyboard in Resources */,
 			);
@@ -198,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7ED4CD8C1E7C084F00E976CD /* ViewController.swift in Sources */,
+				7EF4DB211E81C08F008F4539 /* SearchBarView.swift in Sources */,
 				7ED4CD8A1E7C084F00E976CD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

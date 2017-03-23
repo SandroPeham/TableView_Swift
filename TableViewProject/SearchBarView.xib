@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe" customClass="SearchBarView" customModule="TableViewProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <searchField wantsLayer="YES" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKS-Rv-7aG">
+                    <rect key="frame" x="20" y="4" width="376" height="22"/>
+                    <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="U8n-zv-Jxf">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </searchFieldCell>
+                </searchField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YsI-JX-4YQ">
+                    <rect key="frame" x="394" y="-2" width="72" height="32"/>
+                    <buttonCell key="cell" type="push" title="Done" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="a60-Xy-pW0">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="done:" target="c22-O7-iKe" id="cHM-ab-hnP"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="YsI-JX-4YQ" firstAttribute="centerY" secondItem="hKS-Rv-7aG" secondAttribute="centerY" id="Cic-wE-i05"/>
+                <constraint firstItem="hKS-Rv-7aG" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="4" id="GH7-6X-uqt"/>
+                <constraint firstItem="YsI-JX-4YQ" firstAttribute="leading" secondItem="hKS-Rv-7aG" secondAttribute="trailing" constant="4" id="etA-BR-xFj"/>
+                <constraint firstItem="hKS-Rv-7aG" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="laM-fM-Xt5"/>
+                <constraint firstAttribute="trailing" secondItem="YsI-JX-4YQ" secondAttribute="trailing" constant="20" id="tHx-LV-Fyu"/>
+            </constraints>
+            <connections>
+                <outlet property="searchField" destination="hKS-Rv-7aG" id="SpE-tF-8xT"/>
+            </connections>
+            <point key="canvasLocation" x="334" y="144"/>
+        </customView>
+    </objects>
+</document>

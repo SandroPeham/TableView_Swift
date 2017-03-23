@@ -173,7 +173,7 @@
                                                 <items>
                                                     <menuItem title="Find…" tag="1" keyEquivalent="f" id="Xz5-n4-O0W">
                                                         <connections>
-                                                            <action selector="performFindPanelAction:" target="Ady-hI-5gd" id="cD7-Qs-BN4"/>
+                                                            <action selector="find:" target="Ady-hI-5gd" id="yrl-lv-Ml3"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Find and Replace…" tag="12" keyEquivalent="f" id="YEy-JH-Tfz">
@@ -687,13 +687,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxA-rX-LNI">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="238"/>
                                 <clipView key="contentView" id="JyK-I2-c8s">
-                                    <rect key="frame" x="1" y="0.0" width="478" height="269"/>
+                                    <rect key="frame" x="1" y="0.0" width="478" height="237"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="tFu-1t-Hft" viewBased="YES" id="1h4-BX-rcQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="478" height="246"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="478" height="214"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -758,15 +758,26 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="jB6-m0-zer">
+                                <rect key="frame" x="0.0" y="238" width="480" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="FM7-Qu-UP8"/>
+                                </constraints>
+                            </customView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="dxA-rX-LNI" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="DqC-cE-XLH"/>
+                            <constraint firstItem="jB6-m0-zer" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="azG-Oq-EWc"/>
                             <constraint firstAttribute="bottom" secondItem="dxA-rX-LNI" secondAttribute="bottom" id="cS9-dJ-ZJt"/>
-                            <constraint firstItem="dxA-rX-LNI" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="kp8-JS-gqT"/>
+                            <constraint firstItem="dxA-rX-LNI" firstAttribute="top" secondItem="jB6-m0-zer" secondAttribute="bottom" id="dUA-g1-f3I"/>
                             <constraint firstAttribute="trailing" secondItem="dxA-rX-LNI" secondAttribute="trailing" id="tyJ-H4-K3B"/>
+                            <constraint firstItem="jB6-m0-zer" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="v7e-E6-uFt"/>
+                            <constraint firstAttribute="trailing" secondItem="jB6-m0-zer" secondAttribute="trailing" id="xQ8-NL-T7a"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="searchBarViewContainer" destination="jB6-m0-zer" id="08p-v2-Ktv"/>
+                        <outlet property="searchBarViewContainerHeight" destination="FM7-Qu-UP8" id="Mqw-GR-yPC"/>
                         <outlet property="tableView" destination="1h4-BX-rcQ" id="B8z-dU-dGn"/>
                     </connections>
                 </viewController>
